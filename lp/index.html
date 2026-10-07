@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ズラ講｜未来を拓く視点のズラし方講座</title>
+<meta name="description" content="立ち止まった時、もやもやした時。視点を少しズラすだけで、人生は今より少し楽になる。にしやんと仲間で身につける「ズラしの技術」。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbf7f0; --surface:#ffffff; --ink:#2a2622; --muted:#6b635a;
+  --accent:#e2602b; --accent-2:#2a8c82; --line:#e7dfd3; --shift:rgba(226,96,43,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1916; --surface:#25221e; --ink:#f3ede4; --muted:#b4aa9d;
+    --accent:#f0814f; --accent-2:#4fb8ac; --line:#3a352f; --shift:rgba(240,129,79,.22);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1916; --surface:#25221e; --ink:#f3ede4; --muted:#b4aa9d;
+  --accent:#f0814f; --accent-2:#4fb8ac; --line:#3a352f; --shift:rgba(240,129,79,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.9;font-size:16px;overflow-x:hidden}
+h1,h2,h3,.round{font-family:"Zen Maru Gothic",sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+section{padding:88px 0}
+.label{display:inline-block;font-size:13px;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:12px}
+h2{font-size:clamp(24px,5vw,34px);line-height:1.5;margin-bottom:28px}
+
+/* ズラし表現：文字の影を少しズラす */
+.zura{position:relative;display:inline-block}
+.zura::before{content:attr(data-t);position:absolute;left:.08em;top:.08em;color:var(--shift);z-index:-1;white-space:nowrap}
+
+/* Hero */
+.hero{min-height:92vh;display:flex;align-items:center;padding:64px 0}
+.hero .kicker{color:var(--muted);font-size:15px;margin-bottom:20px}
+.hero h1{font-size:clamp(38px,9vw,76px);line-height:1.25;font-weight:900;margin-bottom:28px;isolation:isolate}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lead{font-size:clamp(16px,2.4vw,19px);max-width:34em}
+.btn{display:inline-block;margin-top:36px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:16px 36px;border-radius:999px;box-shadow:6px 6px 0 var(--shift);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--shift)}
+
+/* もやもや */
+.moya{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.moya ul{list-style:none;display:grid;gap:14px;margin-bottom:32px}
+.moya li{padding:16px 20px;border:1px dashed var(--line);border-radius:14px;color:var(--muted)}
+.moya li::before{content:"…";color:var(--accent);font-weight:700;margin-right:8px}
+.turn{font-size:clamp(18px,3vw,22px);font-weight:700}
+
+/* ズラしとは */
+.shift-demo{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin:32px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card small{display:block;color:var(--muted);font-size:12px;letter-spacing:.1em}
+.card.after{transform:translate(6px,6px);border-color:var(--accent-2)}
+.arrow{color:var(--accent);font-size:24px;font-weight:900}
+@media (max-width:600px){.shift-demo{grid-template-columns:1fr}.arrow{transform:rotate(90deg);justify-self:center}}
+
+/* 4ステップ */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.step::before{counter-increment:s;content:"0" counter(s);display:block;font-family:"Zen Maru Gothic";font-size:28px;font-weight:900;color:var(--accent)}
+.step h3{font-size:18px;margin:4px 0 6px}
+.step p{font-size:14px;color:var(--muted)}
+
+/* 旅程タイムライン */
+.journey{position:relative;margin-top:12px}
+.journey::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.node{position:relative;padding:0 0 28px 60px}
+.node .dot{position:absolute;left:8px;top:6px;width:24px;height:24px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.node.talk .dot{border-color:var(--accent-2);border-style:dashed}
+.node .tag{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--accent)}
+.node.talk .tag{color:var(--accent-2)}
+.node h3{font-size:19px}
+.node p{color:var(--muted);font-size:14px}
+.node.secret .dot{background:var(--ink);border-color:var(--ink)}
+.node.secret h3{font-size:24px}
+.node.secret .tag{color:var(--ink)}
+.blur{filter:blur(4px);user-select:none}
+
+/* 変化 */
+.after-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.after-list div{border-left:4px solid var(--accent-2);padding:6px 0 6px 16px}
+.after-list strong{display:block;font-size:18px}
+.after-list span{font-size:14px;color:var(--muted)}
+
+/* 講師 */
+.prof{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.avatar{width:120px;height:120px;border-radius:50%;background:var(--surface);border:2px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:12px;flex-shrink:0}
+.prof div{flex:1;min-width:240px}
+
+.todo{border:2px dashed var(--accent);border-radius:12px;padding:12px 16px;color:var(--accent);font-size:14px;margin-top:16px}
+
+/* CTA */
+.cta{text-align:center;background:var(--surface);border-top:1px solid var(--line)}
+.cta h2{margin-bottom:12px}
+footer{text-align:center;padding:32px 16px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">未来を拓く視点のズラし方講座</p>
+    <h1><span class="zura" data-t="ちょっと、">ちょっと、</span><br><em class="zura" data-t="ズラして">ズラして</em>みない？</h1>
+    <p class="lead">立ち止まった時。もやもやが晴れない時。<br>変えるのは人生じゃなく、<strong>見る角度</strong>だけでいい。<br>仲間と一緒に「ズラしの技術」を身につける講座、<strong>ズラ講</strong>。</p>
+    <a class="btn" href="#join">ズラ講をのぞいてみる</a>
+  </div>
+</header>
+
+<!-- もやもや -->
+<section class="moya">
+  <div class="wrap">
+    <span class="label">こんなこと、ありませんか</span>
+    <h2>気づけば、同じところで<br>立ち止まっている。</h2>
+    <ul>
+      <li>仕事も家庭も「このままでいいのかな」と思う夜がある</li>
+      <li>頑張っているのに、なぜか心が晴れない</li>
+      <li>新しいことを始めたい。でも何からやればいいか分からない</li>
+      <li>人に相談するほどでもない、小さなもやもやが積もっている</li>
+    </ul>
+    <p class="turn">それ、あなたが悪いんじゃない。<br>ずっと<span style="color:var(--accent)">同じ角度</span>から見ているだけかもしれません。</p>
+  </div>
+</section>
+
+<!-- ズラしとは -->
+<section>
+  <div class="wrap">
+    <span class="label">ズラしとは</span>
+    <h2>出来事は同じ。<br>見え方が変わる。</h2>
+    <p>「ズラし」は、ものの見方を少しだけずらす技術です。ポジティブ思考で無理に前を向くことではありません。<br>実はあなたも、もう普段から無意識にズラせています。ズラ講では、それに気づいて、言葉にして、自分の意思で使えるようにしていきます。</p>
+    <div class="shift-demo">
+      <div class="card"><small>いつもの見方</small>「もう若くないから、今さら無理」</div>
+      <div class="arrow">→</div>
+      <div class="card after"><small>ズラした見方</small>「経験があるからこそ、今できることがある」</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4ステップ -->
+<section>
+  <div class="wrap">
+    <span class="label">ズラ講の学び方</span>
+    <h2>一人で考えない。<br>みんなでズラす。</h2>
+    <div class="steps">
+      <div class="step"><h3>出し合う</h3><p>にしやんの経験と、みんなが普段やっているズラしを持ち寄る</p></div>
+      <div class="step"><h3>気づく</h3><p>「それ、ズラしてるね」。自分のズラしに気づく</p></div>
+      <div class="step"><h3>言葉にする</h3><p>なんとなくを言葉にして、仲間と共有する</p></div>
+      <div class="step"><h3>認め合う</h3><p>お互いのズラしを認め合い、自分の技術にしていく</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 旅程 -->
+<section class="moya">
+  <div class="wrap">
+    <span class="label">ズラ講の旅</span>
+    <h2>五つの講義と三つのトーク。<br>その先に、<span style="color:var(--accent)">幻の第六講</span>。</h2>
+    <p style="margin-bottom:32px">講義で学び、宿題で実践し、ズラトークで進捗を確かめ合う。<br>このサイクルをくり返した人だけが、第六講にたどり着きます。</p>
+    <div class="journey">
+      <div class="node"><span class="dot"></span><span class="tag">第一講</span><h3>【タイトル未定】</h3><p>【内容を入れる】</p></div>
+      <div class="node"><span class="dot"></span><span class="tag">第二講</span><h3>【タイトル未定】</h3><p>【内容を入れる】</p></div>
+      <div class="node"><span class="dot"></span><span class="tag">第三講</span><h3>【タイトル未定】</h3><p>【内容を入れる】</p></div>
+      <div class="node talk"><span class="dot"></span><span class="tag">ズラトーク①</span><h3>宿題の進捗を、みんなで確かめる</h3><p>やってみてどうだった？ うまくいかなかったことも含めて、ここで共有します。</p></div>
+      <div class="node"><span class="dot"></span><span class="tag">第四講</span><h3>【タイトル未定】</h3><p>【内容を入れる】</p></div>
+      <div class="node"><span class="dot"></span><span class="tag">第五講</span><h3>【タイトル未定】</h3><p>【内容を入れる】</p></div>
+      <div class="node talk"><span class="dot"></span><span class="tag">ズラトーク②</span><h3>ズラしが日常になっていく</h3><p>仲間のズラしから、また新しい角度を見つける。</p></div>
+      <div class="node talk"><span class="dot"></span><span class="tag">ズラトーク③</span><h3>第六講への扉の前で</h3><p>ここまでの変化を言葉にして、次へ向かう準備をします。</p></div>
+      <div class="node secret"><span class="dot"></span><span class="tag">？？？</span><h3>幻の第六講</h3><p>内容は、ここでは明かしません。<br><span class="blur">たどり着いた人だけが知っている</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 変化 -->
+<section>
+  <div class="wrap">
+    <span class="label">ズラ講のあとに</span>
+    <h2>人生が、今より少し楽になる。</h2>
+    <div class="after-list">
+      <div><strong>楽になる</strong><span>同じ出来事でも、受け止め方を選べるようになる</span></div>
+      <div><strong>笑顔が増える</strong><span>もやもやが「まあ、こう見ればいいか」に変わる</span></div>
+      <div><strong>充実する</strong><span>立ち止まった場所から、次の一歩が見えてくる</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 講師 -->
+<section class="moya">
+  <div class="wrap">
+    <span class="label">ナビゲーター</span>
+    <h2>にしやん</h2>
+    <div class="prof">
+      <div class="avatar">写真</div>
+      <div>
+        <p>【にしやんのプロフィール・ズラしてきた経験を入れる】</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 声 -->
+<section>
+  <div class="wrap">
+    <span class="label">受講した人の声</span>
+    <h2>ズラしてみたら、こうなった。</h2>
+    <p class="todo">【実際の受講者の声を入れる（本人の許可を取ったもの）】</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="join">
+  <div class="wrap">
+    <h2>次にズラすのは、あなたの番。</h2>
+    <p>まずは第一講から。幻の第六講で、お待ちしています。</p>
+    <a class="btn" href="#">【申込リンクを入れる】</a>
+    <p class="todo" style="display:inline-block">【価格・開催日程・形式（Zoom／アーカイブ）を入れる】</p>
+  </div>
+</section>
+
+<footer>© ズラ講 — 未来を拓く視点のズラし方講座</footer>
+</body>
+</html>
